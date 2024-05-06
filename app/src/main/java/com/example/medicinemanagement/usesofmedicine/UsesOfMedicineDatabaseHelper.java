@@ -1,87 +1,98 @@
 package com.example.medicinemanagement.usesofmedicine;
 
-import android.content.Context;
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import java.util.ArrayList;
-import java.util.List;
+import android.widget.Toast;
 
 public class UsesOfMedicineDatabaseHelper extends SQLiteOpenHelper {
 
+    private Context context;
     private static final String DATABASE_NAME = "usesOfMedicine.db";
     private static final int DATABASE_VERSION = 1;
 
-    public static final String TABLE_NAME = "UsesOfMedicine";
-    public static final String COLUMN_ID = "id";
-    public static final String COLUMN_NAME = "Name";
-    public static final String COLUMN_DESCRIPTION = "Description";
-
-    private static final String SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + TABLE_NAME + " (" +
-                    COLUMN_ID + " INTEGER PRIMARY KEY," +
-                    COLUMN_NAME + " TEXT," +
-                    COLUMN_DESCRIPTION + " TEXT)";
-
-    private static final String SQL_DELETE_ENTRIES =
-            "DROP TABLE IF EXISTS " + TABLE_NAME;
+    private static final String TABLE_NAME = "UsesOfMedicine";
+    private static final String COLUMN_ID = "_id";
+    private static final String COLUMN_MS = "MS";
+    private static final String COLUMN_NAME = "Name";
+    private static final String COLUMN_DESCRIPTION = "Description";
 
     public UsesOfMedicineDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(SQL_CREATE_ENTRIES);
+        String query = "CREATE TABLE " + TABLE_NAME +
+                " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_MS + " TEXT, " +
+                COLUMN_NAME + " TEXT, " +
+                COLUMN_DESCRIPTION + " TEXT);";
+        db.execSQL(query);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(SQL_DELETE_ENTRIES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
 
-    public void insertUsesOfMedicine(String name, String description) {
-        // Get writable database
+    void insertUsesOfMedicine(String ms, String name, String description) {
         SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
 
-        // Create a new map of values, where column names are the keys
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME, name);
-        values.put(COLUMN_DESCRIPTION, description);
-
-        // Insert the new row, returning the primary key value of the new row
-        long newRowId = db.insert(TABLE_NAME, null, values);
-
-        // Close the database connection
-        db.close();
+        cv.put(COLUMN_MS, ms);
+        cv.put(COLUMN_NAME, name);
+        cv.put(COLUMN_DESCRIPTION, description);
+        long result = db.insert(TABLE_NAME, null, cv);
+        if (result == -1) {
+            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Added Successfully!", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    public List<UsesOfMedicineModel> getAllUsesOfMedicine() {
-        List<UsesOfMedicineModel> usesOfMedicineList = new ArrayList<>();
+    Cursor getAllUsesOfMedicine() {
+        String query = "SELECT * FROM " + TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
 
-        // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_NAME;
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-        // Looping through all rows and adding to list
-        if (cursor.moveToFirst()) {
-            do {
-                UsesOfMedicineModel usesOfMedicine = new UsesOfMedicineModel(
-                        cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME)),
-                        cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESCRIPTION))
-                );
-                usesOfMedicineList.add(usesOfMedicine);
-            } while (cursor.moveToNext());
+        Cursor cursor = null;
+        if (db != null) {
+            cursor = db.rawQuery(query, null);
         }
+        return cursor;
+    }
 
-        // Close the database connection
-        db.close();
+    void updateUsesOfMedicine(String ms, String name, String description) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_MS, ms);
+        cv.put(COLUMN_NAME, name);
+        cv.put(COLUMN_DESCRIPTION, description);
 
-        // Return the list of uses of medicine
-        return usesOfMedicineList;
+        long result = db.update(TABLE_NAME, cv, COLUMN_MS + "=?", new String[]{ms});
+        if (result == -1) {
+            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Updated Successfully!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    void deleteUsesOfMedicine(String ms) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete(TABLE_NAME, COLUMN_MS + "=?", new String[]{ms});
+        if (result == -1) {
+            Toast.makeText(context, "Failed to Delete.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Successfully Deleted.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    void deleteAllData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_NAME);
     }
 }

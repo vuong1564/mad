@@ -33,6 +33,7 @@
         <!-- Declare UsesOfMedicineActivity here -->
         <activity android:name=".usesofmedicine.UsesOfMedicineActivity" />
         <activity android:name=".usesofmedicine.CreateUsesOfMedicine" />
+        <activity android:name=".usesofmedicine.UpdateUsesOfMedicine" />
 
     </application>
 

@@ -1,76 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
 
     <TextView
         android:id="@+id/uses_of_medicine_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
         android:text="Công dụng của thuốc"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TableLayout
+    <EditText
+        android:id="@+id/editTextIdUsesOfMedicine"
         android:layout_width="match_parent"
-        android:layout_height="212dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="Mã công dụng"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/uses_of_medicine_title">
+        app:layout_constraintTop_toBottomOf="@+id/uses_of_medicine_title" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/editTextNameUsesOfMedicine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="Tên công dụng của thuốc"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextIdUsesOfMedicine" />
 
-            <TextView
-                android:id="@+id/textViewNameUsesOfMedicine"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Công dụng:" />
+    <EditText
+        android:id="@+id/editTextDescriptionUsesOfMedicine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="Mô tả"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNameUsesOfMedicine" />
 
-            <EditText
-                android:id="@+id/editTextNameUsesOfMedicine"
-                android:layout_width="313dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Nhập Tên"
-                android:inputType="textPersonName" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textViewDescriptionUsesOfMedicine"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mô tả:" />
-
-            <EditText
-                android:id="@+id/editTextDescriptionUsesOfMedicine"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Mô tả"
-                android:inputType="textPersonName"
-                tools:ignore="TouchTargetSizeCheck" />
-        </TableRow>
-
-        <TableRow>
-
-            <Button
-                android:id="@+id/create_uses_of_medicine"
-                android:text="Thêm mới">
-
-            </Button>
-        </TableRow>
-    </TableLayout>
-
+    <Button
+        android:id="@+id/create_uses_of_medicine"
+        android:layout_width="214dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="48dp"
+        android:text="Add"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDescriptionUsesOfMedicine" />
 </androidx.constraintlayout.widget.ConstraintLayout>
