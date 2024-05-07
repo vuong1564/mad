@@ -12,7 +12,7 @@ import com.example.medicinemanagement.R;
 
 public class CreateUsesOfMedicine extends AppCompatActivity {
 
-    EditText editTextIdUsesOfMedicine, editTextNameUsesOfMedicine, editTextDescriptionUsesOfMedicine;
+    EditText editTextNameUsesOfMedicine, editTextDescriptionUsesOfMedicine;
     Button createUsesOfMedicineButton;
     UsesOfMedicineDatabaseHelper databaseHelper;
 
@@ -21,7 +21,6 @@ public class CreateUsesOfMedicine extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_uses_of_medicine);
 
-        editTextIdUsesOfMedicine = findViewById(R.id.editTextIdUsesOfMedicine);
         editTextNameUsesOfMedicine = findViewById(R.id.editTextNameUsesOfMedicine);
         editTextDescriptionUsesOfMedicine = findViewById(R.id.editTextDescriptionUsesOfMedicine);
         createUsesOfMedicineButton = findViewById(R.id.create_uses_of_medicine);
@@ -30,14 +29,13 @@ public class CreateUsesOfMedicine extends AppCompatActivity {
         createUsesOfMedicineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String id = editTextIdUsesOfMedicine.getText().toString().trim();
                 String name = editTextNameUsesOfMedicine.getText().toString().trim();
                 String description = editTextDescriptionUsesOfMedicine.getText().toString().trim();
 
-                if (id.isEmpty() || name.isEmpty() || description.isEmpty()) {
+                if (name.isEmpty() || description.isEmpty()) {
                     Toast.makeText(CreateUsesOfMedicine.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
                 } else {
-                    databaseHelper.insertUsesOfMedicine(id, name, description);
+                    databaseHelper.insertUsesOfMedicine(name, description);
                     Toast.makeText(CreateUsesOfMedicine.this, "Uses of Medicine added", Toast.LENGTH_SHORT).show();
                     finish();
                 }

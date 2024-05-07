@@ -107,4 +107,16 @@ public class UsesOfMedicineActivity extends AppCompatActivity {
         });
         builder.create().show();
     }
+
+    @Override
+    protected void onResume() {
+    super.onResume();
+    // This is where you can place the code that needs to be executed when the activity is resumed
+    // For example, you can refresh your data here
+    medicineId.clear();
+    medicineName.clear();
+    medicineDescription.clear();
+    storeDataInArrays();
+    customAdapter.notifyDataSetChanged();
+}
 }

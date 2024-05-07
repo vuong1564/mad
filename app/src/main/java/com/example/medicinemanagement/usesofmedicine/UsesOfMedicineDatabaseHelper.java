@@ -15,7 +15,6 @@ public class UsesOfMedicineDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TABLE_NAME = "UsesOfMedicine";
     private static final String COLUMN_ID = "_id";
-    private static final String COLUMN_MS = "MS";
     private static final String COLUMN_NAME = "Name";
     private static final String COLUMN_DESCRIPTION = "Description";
 
@@ -28,7 +27,6 @@ public class UsesOfMedicineDatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_NAME +
                 " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_MS + " TEXT, " +
                 COLUMN_NAME + " TEXT, " +
                 COLUMN_DESCRIPTION + " TEXT);";
         db.execSQL(query);
@@ -40,11 +38,10 @@ public class UsesOfMedicineDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void insertUsesOfMedicine(String ms, String name, String description) {
+    void insertUsesOfMedicine(String name, String description) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_MS, ms);
         cv.put(COLUMN_NAME, name);
         cv.put(COLUMN_DESCRIPTION, description);
         long result = db.insert(TABLE_NAME, null, cv);
@@ -66,14 +63,13 @@ public class UsesOfMedicineDatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    void updateUsesOfMedicine(String ms, String name, String description) {
+    void updateUsesOfMedicine(String id, String name, String description) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_MS, ms);
         cv.put(COLUMN_NAME, name);
         cv.put(COLUMN_DESCRIPTION, description);
 
-        long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{ms});
+        long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{id});
         if (result == -1) {
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
         } else {
@@ -81,9 +77,9 @@ public class UsesOfMedicineDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    void deleteUsesOfMedicine(String ms) {
+    void deleteUsesOfMedicine(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        long result = db.delete(TABLE_NAME,  "_id=?", new String[]{ms});
+        long result = db.delete(TABLE_NAME,  "_id=?", new String[]{id});
         if (result == -1) {
             Toast.makeText(context, "Failed to Delete.", Toast.LENGTH_SHORT).show();
         } else {

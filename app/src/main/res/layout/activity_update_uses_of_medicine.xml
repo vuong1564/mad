@@ -1,69 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="30dp">
 
     <EditText
-        android:id="@+id/editTextIdUsesOfMedicine2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:ems="10"
-        android:hint="Mã công dụng"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
         android:id="@+id/editTextNameUsesOfMedicine2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Tên công dụng của thuốc"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextIdUsesOfMedicine2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextDescriptionUsesOfMedicine2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Mô tả"
-        android:inputType="number"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNameUsesOfMedicine2" />
 
     <Button
         android:id="@+id/update_button_UsesOfMedicine"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:text="Update"
-        android:textSize="20sp"
         android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDescriptionUsesOfMedicine2" />
 
     <Button
         android:id="@+id/delete_button_UsesOfMedicine"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:text="Delete"
         android:textAllCaps="false"
         android:textColor="@color/red"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/update_button_UsesOfMedicine" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextDescriptionUsesOfMedicine2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

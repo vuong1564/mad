@@ -1,9 +1,9 @@
 package com.example.medicinemanagement.usesofmedicine;
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
@@ -15,7 +15,7 @@ import com.example.medicinemanagement.R;
 
 public class UpdateUsesOfMedicine extends AppCompatActivity {
 
-    EditText editTextIdUsesOfMedicine, editTextNameUsesOfMedicine, editTextDescriptionUsesOfMedicine;
+    EditText editTextNameUsesOfMedicine, editTextDescriptionUsesOfMedicine;
     Button updateButton, deleteButton;
 
     String id, name, description;
@@ -25,7 +25,6 @@ public class UpdateUsesOfMedicine extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_uses_of_medicine);
 
-        editTextIdUsesOfMedicine = findViewById(R.id.editTextIdUsesOfMedicine2);
         editTextNameUsesOfMedicine = findViewById(R.id.editTextNameUsesOfMedicine2);
         editTextDescriptionUsesOfMedicine = findViewById(R.id.editTextDescriptionUsesOfMedicine2);
         updateButton = findViewById(R.id.update_button_UsesOfMedicine);
@@ -62,7 +61,6 @@ public class UpdateUsesOfMedicine extends AppCompatActivity {
             name = getIntent().getStringExtra("name");
             description = getIntent().getStringExtra("description");
 
-            editTextIdUsesOfMedicine.setText(id);
             editTextNameUsesOfMedicine.setText(name);
             editTextDescriptionUsesOfMedicine.setText(description);
         } else {
