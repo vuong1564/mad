@@ -1,0 +1,8 @@
+<resources>
+    <string-array name="medicine_form_array">
+        <item>Nuoc</item>
+        <item>Vien</item>
+        <item>Bot</item>
+        <!-- Add more items as needed -->
+    </string-array>
+</resources>

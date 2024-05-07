@@ -27,7 +27,7 @@ public class UsesOfMedicineActivity extends AppCompatActivity {
     TextView no_data;
 
     UsesOfMedicineDatabaseHelper myDB;
-    ArrayList<String> medicineId, medicineName, medicineDescription;
+    ArrayList<String> UsesOfmedicineId, UsesOfmedicineName, medicineDescription;
     UsesOfMedicineAdapter customAdapter;
 
     @Override
@@ -48,13 +48,13 @@ public class UsesOfMedicineActivity extends AppCompatActivity {
         });
 
         myDB = new UsesOfMedicineDatabaseHelper(UsesOfMedicineActivity.this);
-        medicineId = new ArrayList<>();
-        medicineName = new ArrayList<>();
+        UsesOfmedicineId = new ArrayList<>();
+        UsesOfmedicineName = new ArrayList<>();
         medicineDescription = new ArrayList<>();
 
         storeDataInArrays();
 
-        customAdapter = new UsesOfMedicineAdapter(UsesOfMedicineActivity.this, this, medicineId, medicineName, medicineDescription);
+        customAdapter = new UsesOfMedicineAdapter(UsesOfMedicineActivity.this, this, UsesOfmedicineId, UsesOfmedicineName, medicineDescription);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(UsesOfMedicineActivity.this));
 
@@ -75,8 +75,8 @@ public class UsesOfMedicineActivity extends AppCompatActivity {
             no_data.setVisibility(View.VISIBLE);
         }else{
             while (cursor.moveToNext()){
-                medicineId.add(cursor.getString(0));
-                medicineName.add(cursor.getString(1));
+                UsesOfmedicineId.add(cursor.getString(0));
+                UsesOfmedicineName.add(cursor.getString(1));
                 medicineDescription.add(cursor.getString(2));
             }
             empty_imageview.setVisibility(View.GONE);
@@ -84,37 +84,14 @@ public class UsesOfMedicineActivity extends AppCompatActivity {
         }
     }
 
-    void confirmDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete All?");
-        builder.setMessage("Are you sure you want to delete all Data?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                UsesOfMedicineDatabaseHelper myDB = new UsesOfMedicineDatabaseHelper(UsesOfMedicineActivity.this);
-                myDB.deleteAllData();
-                //Refresh Activity
-                Intent intent = new Intent(UsesOfMedicineActivity.this, UsesOfMedicineActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
-        });
-        builder.create().show();
-    }
 
     @Override
     protected void onResume() {
     super.onResume();
     // This is where you can place the code that needs to be executed when the activity is resumed
     // For example, you can refresh your data here
-    medicineId.clear();
-    medicineName.clear();
+    UsesOfmedicineId.clear();
+    UsesOfmedicineName.clear();
     medicineDescription.clear();
     storeDataInArrays();
     customAdapter.notifyDataSetChanged();

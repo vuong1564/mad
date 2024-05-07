@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".medicine.UpdateMedicine"
+    android:background="@drawable/bg">
+
+    <EditText
+        android:id="@+id/editTextNameMedicine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="80dp"
+        android:hint="Name of Medicine"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextPriceMedicine"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/editTextNameMedicine"
+        android:layout_marginTop="10dp"
+        android:hint="Price of Medicine"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNameMedicine" />
+
+    <Spinner
+        android:id="@+id/spinnerFormMedicine"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/editTextPriceMedicine"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPriceMedicine"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Spinner
+        android:id="@+id/spinnerUsageMedicine"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/spinnerFormMedicine"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerFormMedicine"
+        tools:layout_editor_absoluteX="25dp" />
+
+    <Button
+        android:id="@+id/update_button_Medicine"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/spinnerUsageMedicine"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:text="Update"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerUsageMedicine" />
+
+    <Button
+        android:id="@+id/delete_button_Medicine"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/spinnerUsageMedicine"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:text="Delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerUsageMedicine" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

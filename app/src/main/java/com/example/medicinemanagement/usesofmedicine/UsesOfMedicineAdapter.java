@@ -17,18 +17,17 @@ import java.util.ArrayList;
 
 public class UsesOfMedicineAdapter extends RecyclerView.Adapter<UsesOfMedicineAdapter.ViewHolder> {
 
-    private final ArrayList<String> medicineId;
-    private final ArrayList<String> medicineName;
+    private final ArrayList<String> UsesOfmedicineId;
+    private final ArrayList<String> UsesOfmedicineName;
     private final ArrayList<String> medicineDescription;
     private final Context context;
     private final Activity activity;
 
-    public UsesOfMedicineAdapter(Activity activity, Context context, ArrayList<String> medicineId, ArrayList<String> medicineName,
-                                 ArrayList<String> medicineDescription) {
+    public UsesOfMedicineAdapter(Activity activity, Context context, ArrayList<String> UsesOfmedicineId, ArrayList<String> UsesOfmedicineName, ArrayList<String> medicineDescription) {
         this.context = context;
         this.activity = activity;
-        this.medicineId = medicineId;
-        this.medicineName = medicineName;
+        this.UsesOfmedicineId = UsesOfmedicineId;
+        this.UsesOfmedicineName = UsesOfmedicineName;
         this.medicineDescription = medicineDescription;
     }
 
@@ -41,14 +40,14 @@ public class UsesOfMedicineAdapter extends RecyclerView.Adapter<UsesOfMedicineAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.medicineIdTxt.setText(medicineId.get(position));
-        holder.medicineNameTxt.setText(medicineName.get(position));
+        holder.UsesOfmedicineIdTxt.setText(UsesOfmedicineId.get(position));
+        holder.UsesOfUsesOfmedicineNameTxt.setText(UsesOfmedicineName.get(position));
         holder.medicineDescriptionTxt.setText(medicineDescription.get(position));
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, UpdateUsesOfMedicine.class);
-            intent.putExtra("id", medicineId.get(position));
-            intent.putExtra("name", medicineName.get(position));
+            intent.putExtra("id", UsesOfmedicineId.get(position));
+            intent.putExtra("name", UsesOfmedicineName.get(position));
             intent.putExtra("description", medicineDescription.get(position));
             activity.startActivityForResult(intent, 1);
         });
@@ -56,16 +55,16 @@ public class UsesOfMedicineAdapter extends RecyclerView.Adapter<UsesOfMedicineAd
 
     @Override
     public int getItemCount() {
-        return medicineId.size();
+        return UsesOfmedicineId.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView medicineIdTxt, medicineNameTxt, medicineDescriptionTxt;
+        TextView UsesOfmedicineIdTxt, UsesOfUsesOfmedicineNameTxt, medicineDescriptionTxt;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
-            medicineIdTxt = itemView.findViewById(R.id.UsesOfMedicine_id_txt);
-            medicineNameTxt = itemView.findViewById(R.id.UsesOfMedicine_name_txt);
+            UsesOfmedicineIdTxt = itemView.findViewById(R.id.UsesOfMedicine_id_txt);
+            UsesOfUsesOfmedicineNameTxt = itemView.findViewById(R.id.UsesOfMedicine_name_txt);
             medicineDescriptionTxt = itemView.findViewById(R.id.UsesOfMedicine_description_txt);
         }
     }

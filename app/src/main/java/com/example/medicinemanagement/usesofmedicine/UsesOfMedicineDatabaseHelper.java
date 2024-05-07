@@ -52,7 +52,7 @@ public class UsesOfMedicineDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    Cursor getAllUsesOfMedicine() {
+    public Cursor getAllUsesOfMedicine() {
         String query = "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
 

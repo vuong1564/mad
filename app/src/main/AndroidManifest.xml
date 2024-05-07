@@ -12,10 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicineManagement"
         tools:targetApi="31" >
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" >
-        </activity>
 
         <activity
             android:name=".LoginActivity"
@@ -27,8 +23,15 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" >
+        </activity>
+
         <!-- Declare MedicineActivity here -->
         <activity android:name=".medicine.MedicineActivity" />
+        <activity android:name=".medicine.CreateMedicine" />
+        <activity android:name=".medicine.UpdateMedicine" />
 
         <!-- Declare UsesOfMedicineActivity here -->
         <activity android:name=".usesofmedicine.UsesOfMedicineActivity" />
