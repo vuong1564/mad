@@ -73,7 +73,7 @@ public class UsesOfMedicineDatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_NAME, name);
         cv.put(COLUMN_DESCRIPTION, description);
 
-        long result = db.update(TABLE_NAME, cv, COLUMN_MS + "=?", new String[]{ms});
+        long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{ms});
         if (result == -1) {
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
         } else {
@@ -83,7 +83,7 @@ public class UsesOfMedicineDatabaseHelper extends SQLiteOpenHelper {
 
     void deleteUsesOfMedicine(String ms) {
         SQLiteDatabase db = this.getWritableDatabase();
-        long result = db.delete(TABLE_NAME, COLUMN_MS + "=?", new String[]{ms});
+        long result = db.delete(TABLE_NAME,  "_id=?", new String[]{ms});
         if (result == -1) {
             Toast.makeText(context, "Failed to Delete.", Toast.LENGTH_SHORT).show();
         } else {
